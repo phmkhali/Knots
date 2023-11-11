@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "367889165967",
+    "project_id": "knots-f0997",
+    "storage_bucket": "knots-f0997.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:367889165967:android:ecea14dd4e9553d1488afa",
+        "android_client_info": {
+          "package_name": "com.example.knots"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA1vpznfgbVVXZcpBOO99T98ctg_I4THb0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
