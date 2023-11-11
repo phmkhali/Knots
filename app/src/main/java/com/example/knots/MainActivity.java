@@ -1,21 +1,11 @@
 package com.example.knots;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
-import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
-import android.content.ContentValues;
-import android.database.Cursor;
-
 import java.util.List;
 
 
@@ -43,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 text = String.valueOf(entry.getText());
-                addToDatabase(text);
+                databaseHelper.addToDatabase(text);
                 entry.setText("");
                 displayData();
             }
@@ -57,15 +47,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
-    private void addToDatabase(String text) {
-        SQLiteDatabase db = databaseHelper.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put("text", text);
-        db.insert(DatabaseHelper.TABLE_NAME, null, values);
-        db.close();
-    }
-
     private void displayData() {
         List<String> data = databaseHelper.getAllData();
         CustomAdapter adapter = new CustomAdapter(this, data, databaseHelper);

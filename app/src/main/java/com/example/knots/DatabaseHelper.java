@@ -1,6 +1,7 @@
 package com.example.knots;
 
 import android.annotation.SuppressLint;
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -31,6 +32,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+    public void addToDatabase(String text) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        if(!text.equals("")) {
+            values.put("text", text);
+        }
+        else {
+            values.put("text", ":)");
+        }
+        db.insert(DatabaseHelper.TABLE_NAME, null, values);
+        db.close();
+    }
+
     public void deleteAllData() {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_NAME, null, null);
@@ -48,7 +62,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 dataList.add(data);
             } while (cursor.moveToNext());
         }
-
         cursor.close();
         return dataList;
     }
