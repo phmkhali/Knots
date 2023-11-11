@@ -5,7 +5,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
+
 import java.util.List;
 
 
@@ -14,7 +17,9 @@ public class MainActivity extends AppCompatActivity {
     ListView listView;
     DatabaseHelper databaseHelper;
     EditText entry;
+    TextView emptyText;
     ImageButton add, delete;
+    ImageView cat;
     String text;
 
     @Override
@@ -27,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         entry = findViewById(R.id.entry);
         delete = findViewById(R.id.delete);
         databaseHelper = new DatabaseHelper(this);
+        cat = findViewById(R.id.cat);
         displayData();
 
         add.setOnClickListener(new View.OnClickListener() {
@@ -47,10 +53,22 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
     private void displayData() {
         List<String> data = databaseHelper.getAllData();
         CustomAdapter adapter = new CustomAdapter(this, data, databaseHelper);
         listView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
+
+        emptyText = findViewById(R.id.empty_text);
+        if (data.isEmpty()) {
+            listView.setVisibility(View.GONE);
+            cat.setVisibility(View.VISIBLE);
+            emptyText.setVisibility(View.VISIBLE);
+        } else {
+            listView.setVisibility(View.VISIBLE);
+            cat.setVisibility(View.GONE);
+            emptyText.setVisibility(View.GONE);
+        }
     }
 }

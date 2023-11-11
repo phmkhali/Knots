@@ -41,7 +41,7 @@
     </RelativeLayout>
 
     <!-- content box -->
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
         android:layout_above="@id/bot"
@@ -55,8 +55,32 @@
             android:layout_height="fill_parent"
             tools:listitem="@layout/listitem"
             android:divider="@null"
+            android:visibility="gone"
             />
-    </LinearLayout>
+
+        <ImageView
+            android:id="@+id/cat"
+            android:layout_width="144dp"
+            android:layout_height="79dp"
+            android:layout_centerInParent="true"
+            android:background="@drawable/cat"
+            android:visibility="visible"></ImageView>
+
+        <TextView
+            android:id="@+id/empty_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/varelaround"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:layout_below="@id/cat"
+            android:text="nothing here yet.."
+            android:textColor="@color/first_brown"
+            android:textSize="20dp"
+            android:visibility="visible" />
+
+
+    </RelativeLayout>
 
     <!-- bottom bar -->
     <LinearLayout
@@ -75,7 +99,7 @@
             android:layout_height="40dp"
             android:layout_marginLeft="20dp"
             android:layout_gravity="bottom"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="4dp"
             android:layout_weight="1"
             android:background="@drawable/edit_text"
             android:fontFamily="@font/varelaround"
