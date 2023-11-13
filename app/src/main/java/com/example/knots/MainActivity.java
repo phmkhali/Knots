@@ -2,6 +2,7 @@ package com.example.knots;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -38,10 +39,19 @@ public class MainActivity extends AppCompatActivity {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                text = String.valueOf(entry.getText());
-                databaseHelper.addToDatabase(text);
-                entry.setText("");
-                displayData();
+                add();
+            }
+        });
+
+        entry.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
+                        (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                    add();
+                    return true;
+                }
+                return false;
             }
         });
 
@@ -52,6 +62,13 @@ public class MainActivity extends AppCompatActivity {
                 displayData();
             }
         });
+    }
+
+    public void add() {
+        text = String.valueOf(entry.getText());
+        databaseHelper.addToDatabase(text);
+        entry.setText("");
+        displayData();
     }
 
     private void displayData() {

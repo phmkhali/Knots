@@ -41,9 +41,11 @@ public class CustomAdapter extends ArrayAdapter<String> {
                 databaseHelper.deleteItem(mData.get(position));
                 mData.remove(position);
                 notifyDataSetChanged();
+                List<String> data = databaseHelper.getAllData();
             }
         });
         return listItem;
     }
+
 }
 
